@@ -1,0 +1,11 @@
+services:
+  - name: crab-ai-backend
+    type: web
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        value: "sqlite:///crab_ai.db"
