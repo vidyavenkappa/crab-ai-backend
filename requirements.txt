@@ -4,7 +4,6 @@ sqlalchemy
 pydantic
 bcrypt
 python-multipart
-sqlite3
 pyjwt
 psycopg2-binary
 python-jose
