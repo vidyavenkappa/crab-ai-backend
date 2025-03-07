@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
 
 # SQLite database URL
-SQLALCHEMY_DATABASE_URL = "sqlite:///./crab_ai.db"
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
 # Create SQLAlchemy engine
 engine = create_engine(
