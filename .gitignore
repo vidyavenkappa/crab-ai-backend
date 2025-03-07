@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Logs and cache
+logs/
+*.log
+*.sqlite3-journal
+*.db-journal
+
+# SQLite database file
+crab_ai.db
+
+# Environment variables
+.env
+
+# Render deployment artifacts
+render.yaml
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Python package dependencies
+*.egg-info/
+dist/
+build/
