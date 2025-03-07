@@ -15,11 +15,8 @@ if DATABASE_URL.startswith("postgres://"):
 
 
 
-# Create SQLAlchemy engine
-engine = create_engine(
-    DATABASE_URL, 
-    connect_args={"check_same_thread": False}
-)
+# Create PostgreSQL URL from Render environment variables
+engine = create_engine(DATABASE_URL)
 
 # Create SessionLocal class
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
