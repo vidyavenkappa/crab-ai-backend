@@ -1,32 +1,3 @@
-# from fastapi import FastAPI
-# from fastapi.middleware.cors import CORSMiddleware
-# from database.db import Base, engine
-# from routes import user, paper
-
-# # Initialize FastAPI app
-# app = FastAPI()
-
-# # Allow frontend requests
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
-
-# # Create database tables
-# Base.metadata.create_all(bind=engine)
-
-# # Include routes
-# app.include_router(user.router, prefix="/users", tags=["Users"])
-# app.include_router(paper.router, prefix="/papers", tags=["Papers"])
-
-# @app.get("/")
-# def home():
-#     return {"message": "Welcome to C.R.A.B. AI"}
-
-
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
