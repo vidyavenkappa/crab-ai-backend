@@ -1,12 +1,16 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
-from routes.user import router as user_router
-from routes.paper import router as paper_router
+
 import uvicorn
 from logging_config import logger
 from dotenv import load_dotenv
 import os 
+
+
+from routes.user import router as user_router
+from routes.paper import router as paper_router
+from routes.student_dashboard import router as student_router
 
 # Load environment variables
 load_dotenv()
@@ -29,6 +33,7 @@ logger.info("CRAB.AI Backend Application Starting...")
 # Include routers
 app.include_router(user_router, prefix="/users", tags=["users"])
 app.include_router(paper_router, prefix="/papers", tags=["papers"])
+app.include_router(student_router, prefix="/api", tags=["student"])
 
 # OAuth2 scheme
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")

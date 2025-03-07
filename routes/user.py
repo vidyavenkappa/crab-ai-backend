@@ -132,7 +132,8 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         return {
             "access_token": access_token, 
             "token_type": "bearer", 
-            "role": db_user.role
+            "role": db_user.role,
+            "username": db_user.username
         }
 
     except HTTPException:

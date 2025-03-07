@@ -8,3 +8,4 @@ pyjwt
 psycopg2-binary
 python-jose
 python-dotenv
+google-generativeai
