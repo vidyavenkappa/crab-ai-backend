@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from database.db import Base
 
@@ -6,12 +6,14 @@ class Paper(Base):
     __tablename__ = "papers"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    author_id = Column(Integer, ForeignKey("users.id"))
-    conference = Column(String)
-    file_path = Column(String)
-    review = Column(Text, default="Pending Review")
+    title = Column(String, nullable=False)
+    author_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    conference = Column(String, nullable=False)
+    file_path = Column(String, nullable=False)
     summary = Column(Text, default="No summary available")
     score = Column(Integer, default=0)
+    max_score = Column(Integer, default=10)
     status = Column(String, default="Pending")  # "Accepted" or "Rejected"
     
+    # Relationship to reviews
+    reviews = relationship("Review", back_populates="paper", cascade="all, delete-orphan")

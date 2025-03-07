@@ -36,6 +36,7 @@ def get_db():
 def init_models():
     from models.user import User
     from models.paper import Paper  # Ensure this import is here
+    from models.review import Review
     
     # Create all tables
     Base.metadata.create_all(bind=engine)
