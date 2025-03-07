@@ -14,11 +14,14 @@ logs/
 *.sqlite3-journal
 *.db-journal
 
-# SQLite database file
+# SQLite database file (do not track local DB)
 crab_ai.db
 
 # Environment variables
 .env
+
+# Uploads directory (prevent tracking uploaded files)
+uploads/
 
 # Render deployment artifacts
 render.yaml
