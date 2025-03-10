@@ -4,6 +4,7 @@ from database.db import get_db
 from models.paper import Paper
 from models.user import User
 from models.review import Review
+from models.conference import Conference
 from utils.gemini import generate_summary_using_gemini,get_student_reviews
 import shutil
 import os
@@ -36,22 +37,29 @@ async def upload_paper(student_id: int, conference: str = Form(...), file: Uploa
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
+    
+    conference_obj = db.query(Conference).filter(Conference.id == conference).first()
+
+    if not conference_obj:
+        raise HTTPException(status_code=404, detail="Conference not found")
+
+    conference_name = conference_obj.name  # Access the name correctly
 
     # get summary and review from gemini
     summary_result = generate_summary_using_gemini(file_path)
-    review_result = get_student_reviews(conference,file_path)
-    
+    review_result = get_student_reviews(conference_name,summary_result['title'],file_path)
+   
     try:
         score_arr = review_result["final_score"].split("/")
         new_paper = Paper(
             title=summary_result['title'],
             author_id=student_id,
-            conference=conference,
+            conference=conference_name,
             file_path=file_path,
             summary=summary_result['summary'],
             score=float(score_arr[0]),
             max_score = float(score_arr[1]),
-            status=review_result['decision'] if review_result['decision'] else "Pending",
+            status=review_result['decision'] if review_result['decision'] and review_result['decision'].split(' ')[0] else "Pending",
             date = datetime.today().date()
         )
 
@@ -59,15 +67,18 @@ async def upload_paper(student_id: int, conference: str = Form(...), file: Uploa
         db.commit()
         db.refresh(new_paper)
 
-        print(review_result['review'][0])
+  
         # Store the review in the Review model
         new_review = Review(
             paper_id=new_paper.id,
-            content=review_result['review'][0].get("content",""),
-            strengths=review_result['review'][0].get("strengths", []),
-            weaknesses=review_result['review'][0].get("weaknesses", [])
+            final_score=review_result.get("final_score","0/10"),
+            numerical_ratings=review_result['reviews'][0].get("numerical_ratings", {}),
+            structured_review=review_result['reviews'][0].get("structured_review", {}),
+            actionable_feedback=review_result['reviews'][0].get("actionable_feedback",{}),
+            decision = review_result.get("decision","Pending"),
+
         )
-        
+       
         db.add(new_review)
         db.commit()
         return {

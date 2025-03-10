@@ -41,3 +41,13 @@ def upload_guidelines(payload: GuidelinesRequest, db: Session = Depends(get_db))
     db.commit()
     
     return {"message": "Guidelines uploaded successfully"}
+
+# @router.get("/conference/{conference_id}")
+# def get_conference_details(conference_id: int, db: Session = Depends(get_db)):
+#     """Fetch a conference's details including its slug from the database."""
+#     conference = db.query(Conference).filter(Conference.id == conference_id).first()
+    
+#     if not conference:
+#         raise HTTPException(status_code=404, detail="Conference not found")
+    
+#     return {"id": conference.id, "name": conference.name, "guidelines": conference.guidelines}
