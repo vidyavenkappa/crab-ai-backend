@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime,Float
 from sqlalchemy.orm import relationship
 from database.db import Base
 from datetime import datetime
@@ -12,8 +12,8 @@ class Paper(Base):
     conference = Column(String, nullable=False)
     file_path = Column(String, nullable=False)
     summary = Column(Text, default="No summary available")
-    score = Column(Integer, default=0)
-    max_score = Column(Integer, default=10)
+    score = Column(Float, default=0)
+    max_score = Column(Float, default=10)
     status = Column(String, default="Pending")  # "Accepted" or "Rejected"
     date = Column(DateTime, default=datetime.utcnow)  # Timestamp for upload
    
