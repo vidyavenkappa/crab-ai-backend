@@ -12,6 +12,7 @@ class Conference(Base):
 
     # Relationship with conference papers
     conference_papers = relationship("ConferencePaper", back_populates="conference", cascade="all, delete-orphan")
+    
 class ConferencePaper(Base):
     __tablename__ = "conference_papers"
 

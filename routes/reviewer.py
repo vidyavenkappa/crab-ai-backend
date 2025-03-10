@@ -12,24 +12,7 @@ UPLOAD_FOLDER = "uploads/guidelines"
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-@router.post("/reviewer/upload_guidelines")
-def upload_guidelines(user_id: int, conference_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)):
-    """Upload or update conference guidelines for a specific conference."""
-    reviewer = db.query(User).filter(User.id == user_id, User.role == "reviewer").first()
-    if not reviewer:
-        raise HTTPException(status_code=403, detail="User not authorized")
-    
-    conference = db.query(Conference).filter(Conference.id == conference_id).first()
-    if not conference:
-        raise HTTPException(status_code=404, detail="Conference not found")
-    
-    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    
-    conference.guidelines = file_path
-    db.commit()
-    return {"message": "Guidelines uploaded successfully"}
+
 
 @router.get("/reviewer/papers")
 def get_conference_papers(user_id: int, conference_id: int, db: Session = Depends(get_db)):

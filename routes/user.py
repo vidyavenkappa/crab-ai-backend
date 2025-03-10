@@ -137,9 +137,10 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
             "role": db_user.role,
             "username": db_user.username,
             "name" :db_user.name,
-            "user_id":db_user.id
+            "user_id":db_user.id,
+            "conference":db_user.conference
         }
-
+        
     except HTTPException:
         # Re-raise HTTP exceptions
         raise
