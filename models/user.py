@@ -12,9 +12,10 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
+    name = Column(String)
     password = Column(String)
     role = Column(Enum(UserRole))
     conference = Column(String, nullable=True)
 
-    # # Relationship with papers
-    # papers = relationship("Paper", back_populates="owner", foreign_keys="[Paper.owner_id]")
+    # Relationship with conference papers
+    reviews = relationship("ConferencePaper", back_populates="reviewer")

@@ -7,6 +7,7 @@ from models.review import Review
 from utils.gemini import generate_summary_using_gemini,get_student_reviews
 import shutil
 import os
+from datetime import datetime
 
 router = APIRouter()
 
@@ -50,7 +51,8 @@ async def upload_paper(student_id: int, conference: str = Form(...), file: Uploa
             summary=summary_result['summary'],
             score=float(score_arr[0]),
             max_score = float(score_arr[1]),
-            status=review_result['decision'] if review_result['decision'] else "Pending"
+            status=review_result['decision'] if review_result['decision'] else "Pending",
+            date = datetime.today().date()
         )
 
         db.add(new_paper)

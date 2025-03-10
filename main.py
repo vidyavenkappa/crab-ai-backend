@@ -9,8 +9,10 @@ import os
 
 
 from routes.user import router as user_router
-from routes.paper import router as paper_router
+from routes.conference import router as conference_router
 from routes.student_dashboard import router as student_router
+from routes.reviewer import router as reviewer_router
+
 
 # Load environment variables
 load_dotenv()
@@ -21,6 +23,7 @@ app = FastAPI()
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
+    #allow_origins=["http://localhost:3000"],
     allow_origins=["https://crabai.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
@@ -32,7 +35,8 @@ logger.info("CRAB.AI Backend Application Starting...")
 
 # Include routers
 app.include_router(user_router, prefix="/users", tags=["users"])
-app.include_router(paper_router, prefix="/papers", tags=["papers"])
+app.include_router(conference_router, prefix="/conference", tags=["conference"])
+app.include_router(conference_router, prefix="/reviewer", tags=["reviewer"])
 app.include_router(student_router, prefix="/api", tags=["student"])
 
 # OAuth2 scheme

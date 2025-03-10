@@ -13,6 +13,7 @@ from utils.auth import create_access_token
 router = APIRouter()
 
 class UserSignup(BaseModel):
+    name: constr(min_length=3, max_length=100)
     username: constr(min_length=3, max_length=50)  # Constrained string
     password: constr(min_length=6, max_length=100)  # Constrained string
     role: UserRole  # Ensures only valid enum values
@@ -70,13 +71,14 @@ def signup(user: UserSignup, db: Session = Depends(get_db)):
 
         # Hash password
         hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt())
-
+    
         # Create new user
         new_user = User(
             username=user.username, 
             password=hashed_password.decode('utf-8'), 
             role=user.role,
-            conference=user.conference
+            conference=user.conference,
+            name = user.name
         )
 
         db.add(new_user)
@@ -133,7 +135,9 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
             "access_token": access_token, 
             "token_type": "bearer", 
             "role": db_user.role,
-            "username": db_user.username
+            "username": db_user.username,
+            "name" :db_user.name,
+            "user_id":db_user.id
         }
 
     except HTTPException:
