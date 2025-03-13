@@ -54,7 +54,7 @@ def get_conference_papers(user_id: int, conference_id: int, db: Session = Depend
                 'uploadDate':  datetime.utcnow(),
                 'status':paper.status,
                 'score':'',
-                # 'pdfUrl': UPLOAD_FOLDER+paper.path,
+                'pdfUrl': paper.path,
                 'reviews':[
                     {
                         'model':'Gemini',
@@ -86,7 +86,7 @@ def get_conference_papers(user_id: int, conference_id: int, db: Session = Depend
                 'uploadDate':  datetime.utcnow(),
                 'status':paper.status,
                 'score':'',
-                # 'pdfUrl': UPLOAD_FOLDER+paper.path,
+                'pdfUrl': paper.path,
                 'reviews':[
                     {
                         'model':'Gemini',
@@ -157,7 +157,7 @@ def submit_review(conference_id:int, user_id:int,request: ReviewRequest, db: Ses
                 'uploadDate':  datetime.utcnow(),
                 'status':paper.status,
                 'score':'',
-                # 'pdfUrl': UPLOAD_FOLDER+paper.path,
+                'pdfUrl': paper.path,
                 'reviews':[
                     {
                         'model':'Gemini',
@@ -189,7 +189,7 @@ def submit_review(conference_id:int, user_id:int,request: ReviewRequest, db: Ses
                 'uploadDate':  datetime.utcnow(),
                 'status':paper.status,
                 'score':'',
-                # 'pdfUrl': UPLOAD_FOLDER+paper.path,
+                'pdfUrl': paper.path,
                 'reviews':[
                     {
                         'model':'Gemini',

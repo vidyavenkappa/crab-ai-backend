@@ -22,6 +22,7 @@ class ConferencePaper(Base):
     date_of_review = Column(DateTime, default=datetime.utcnow)
     final_decision = Column(String, nullable=True)
     year = Column(Integer, nullable=False)
+    path = Column(String, nullable=False)
 
     # FIX: Use string-based references
     conference = relationship("Conference", back_populates="conference_papers", lazy="joined")
