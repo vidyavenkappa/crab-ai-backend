@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Enum, ForeignKey
+from sqlalchemy import Column, Integer, String, Enum
 from sqlalchemy.orm import relationship
 from database.db import Base
 import enum
@@ -17,5 +17,5 @@ class User(Base):
     role = Column(Enum(UserRole))
     conference = Column(String, nullable=True)
 
-    # Relationship with conference papers
-    reviews = relationship("ConferencePaper", back_populates="reviewer")
+    # FIX: Add the missing relationship reference
+    reviews = relationship("ConferencePaper", back_populates="reviewer", lazy="joined")

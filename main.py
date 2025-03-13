@@ -23,7 +23,6 @@ app = FastAPI()
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    #allow_origins=["http://localhost:3000"],
     allow_origins=["https://crabai.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
@@ -36,7 +35,7 @@ logger.info("CRAB.AI Backend Application Starting...")
 # Include routers
 app.include_router(user_router, prefix="/users", tags=["users"])
 app.include_router(conference_router, prefix="/conference", tags=["conference"])
-app.include_router(conference_router, prefix="/reviewer", tags=["reviewer"])
+app.include_router(reviewer_router, prefix="/reviewer", tags=["reviewer"])
 app.include_router(student_router, prefix="/api", tags=["student"])
 
 # OAuth2 scheme

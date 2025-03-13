@@ -5,7 +5,7 @@ from models.paper import Paper
 from models.user import User
 from models.review import Review
 from models.conference import Conference
-from utils.gemini import generate_summary_using_gemini,get_student_reviews
+from utils.student_paper_review import generate_paper_summary,get_paper_review
 import shutil
 import os
 from datetime import datetime
@@ -46,9 +46,9 @@ async def upload_paper(student_id: int, conference: str = Form(...), file: Uploa
     conference_name = conference_obj.name  # Access the name correctly
 
     # get summary and review from gemini
-    summary_result = generate_summary_using_gemini(file_path)
-    review_result = get_student_reviews(conference_name,summary_result['title'],file_path)
-   
+    summary_result = generate_paper_summary(file_path)
+    review_result = get_paper_review(conference_name,summary_result['title'],file_path)
+    print(review_result)
     try:
         score_arr = review_result["final_score"].split("/")
         new_paper = Paper(

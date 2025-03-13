@@ -38,7 +38,7 @@ def init_models():
     from models.paper import Paper  # Ensure this import is here
     from models.review import Review
     from models.conference import Conference  # Ensure this import is here
-    from models.conference import ConferencePaper
+    from models.conference_paper import ConferencePaper
     
     # Create all tables
     Base.metadata.create_all(bind=engine)
