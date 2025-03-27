@@ -26,14 +26,14 @@ Crab-AI Backend is a Python-based backend service designed to support the Crab-A
    ```bash
    git clone https://github.com/vidyavenkappa/crab-ai-backend.git
    ```
-
+
 
 2. **Navigate to the Project Directory**:
 
    ```bash
    cd crab-ai-backend
    ```
-
+
 
 3. **Create a Virtual Environment** (Optional but recommended):
 
@@ -41,14 +41,14 @@ Crab-AI Backend is a Python-based backend service designed to support the Crab-A
    python3 -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
-
+
 
 4. **Install Dependencies**:
 
    ```bash
    pip install -r requirements.txt
    ```
-
+
 
 ## Usage
 
@@ -61,7 +61,7 @@ Crab-AI Backend is a Python-based backend service designed to support the Crab-A
    ```bash
    python main.py
    ```
-
+
 
    The server will start and listen for incoming requests as defined in the `routes/` modules.
 
@@ -75,7 +75,7 @@ Contributions are welcome! Please follow these steps:
    ```bash
    git checkout -b feature/your-feature-name
    ```
-
+
 
 3. **Make Your Changes**.
 4. **Commit Your Changes**:
@@ -83,14 +83,14 @@ Contributions are welcome! Please follow these steps:
    ```bash
    git commit -m "Add your commit message here"
    ```
-
+
 
 5. **Push to Your Fork**:
 
    ```bash
    git push origin feature/your-feature-name
    ```
-
+
 
 6. **Submit a Pull Request**.
 
