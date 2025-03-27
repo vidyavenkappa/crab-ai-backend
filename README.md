@@ -1,23 +1,23 @@
 # Crab-AI Backend
 
-Crab-AI Backend is a Python-based backend service designed to support the Crab-AI application. It manages data processing, user interactions, and integrates with various AI models to deliver intelligent responses.
+Crab-AI Backend is a Python-based backend service designed to support the Crab-AI application. It manages data processing, user interactions, and integrates with various AI models to deliver intelligent responses.
 
 ## Features
 
-- **Database Management**: Handles data storage and retrieval operations.
-- **API Routing**: Manages endpoints for client-server communication.
-- **AI Model Integration**: Interfaces with AI models to process and generate responses.
-- **Logging**: Implements logging mechanisms for monitoring and debugging.
+- **Database Management**: Handles data storage and retrieval operations.
+- **API Routing**: Manages endpoints for client-server communication.
+- **AI Model Integration**: Interfaces with AI models to process and generate responses.
+- **Logging**: Implements logging mechanisms for monitoring and debugging.
 
 ## Project Structure
 
-- `database/`: Contains database connection and query handling modules.
-- `models/`: Includes data models and schemas.
-- `routes/`: Defines API endpoints and request handling logic.
-- `utils/`: Provides utility functions and helpers.
-- `logging_config.py`: Sets up logging configurations.
-- `main.py`: Entry point of the application.
-- `requirements.txt`: Lists project dependencies.
+- `database/`: Contains database connection and query handling modules.
+- `models/`: Includes data models and schemas.
+- `routes/`: Defines API endpoints and request handling logic.
+- `utils/`: Provides utility functions and helpers.
+- `logging_config.py`: Sets up logging configurations.
+- `main.py`: Entry point of the application.
+- `requirements.txt`: Lists project dependencies.
 
 ## Installation
 
