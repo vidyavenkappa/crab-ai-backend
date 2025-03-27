@@ -96,8 +96,8 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
 ## Acknowledgments
 
-Special thanks to all contributors and the open-source community for their invaluable support. 
+Special thanks to all contributors and the open-source community for their invaluable support.
